@@ -7,6 +7,7 @@
 #include <QStringListModel>
 #include <QProcess>
 
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -18,10 +19,14 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    QStringListModel *model;
+    QStringList filenames;
+        QStringList oldlist;
 
 private slots:
     void on_pushButton_clicked();
     void on_pushButton_2_clicked();
+    void on_pushButton_3_clicked();
 
 
 private:

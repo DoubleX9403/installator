@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    model = new QStringListModel(this);
 }
 
 
@@ -19,9 +20,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    QStringListModel *model;
-        model = new QStringListModel(this);
-    QStringList filenames = QFileDialog::getOpenFileNames(this, tr("Open Files"), "/home");
+//    QStringList oldlist;
+    oldlist= model->stringList();
+//    QStringList filenames;
+    filenames = QFileDialog::getOpenFileNames(this, tr("Open Files"), "/home");
+   filenames = filenames + oldlist;
+   filenames.removeDuplicates();
     model->setStringList(filenames);
     ui->listView->setModel(model);
 
@@ -34,4 +38,10 @@ void MainWindow::on_pushButton_2_clicked()
         arguments <<  "a" << "-mx5" << "-r0" << "D:/testarchive/archive.zip" << "D:/testarchive";
      runBuild->start("D:/7-Zip/7z.exe",arguments);
 
+}
+void MainWindow::on_pushButton_3_clicked() {
+ filenames.clear();
+ oldlist.clear();
+  model->setStringList(filenames);
+ ui->listView->setModel(model);
 }
