@@ -6,7 +6,11 @@
 #include <QListView>
 #include <QStringListModel>
 #include <QProcess>
-
+#include <QDir>
+#include <QFile>
+#include <QString>
+#include <iostream>
+#include <cstddef>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

@@ -35,6 +35,15 @@ void MainWindow::on_pushButton_2_clicked()
 
     QProcess *runBuild = new QProcess(this);
     QStringList arguments;
+    QDir dir("temp");
+
+    for (int i=0; i<=filenames.size();i++ )
+    {
+        QStringList parts = filenames.at(i).split("/");
+        QString lastBit = parts.at(parts.size()-1);
+        QFile::copy(filenames.at(i) , "temp/" + lastBit);
+    }
+
         arguments <<  "a" << "-mx5" << "-r0" << "D:/testarchive/archive.zip" << "D:/testarchive";
      runBuild->start("D:/7-Zip/7z.exe",arguments);
 
